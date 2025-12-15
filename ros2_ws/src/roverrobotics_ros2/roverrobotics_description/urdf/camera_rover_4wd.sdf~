@@ -18,7 +18,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/flipper_track.dae</uri>
+            <uri>package://roverrobotics_description/meshes/flipper_track.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -27,7 +27,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/flipper_track.dae</uri>
+            <uri>package://roverrobotics_description/meshes/flipper_track.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -36,7 +36,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/flipper_chassis.dae</uri>
+            <uri>package://roverrobotics_description/meshes/flipper_chassis.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -45,7 +45,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/rover_payload.dae</uri>
+            <uri>package://roverrobotics_description/meshes/rover_payload.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -54,7 +54,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/rplidar_s2.dae</uri>
+            <uri>package://roverrobotics_description/meshes/rplidar_s2.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -71,7 +71,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/flipper_chassis.dae</uri>
+            <uri>package://roverrobotics_description/meshes/flipper_chassis.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -80,7 +80,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/flipper_track.dae</uri>
+            <uri>package://roverrobotics_description/meshes/flipper_track.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -89,7 +89,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/flipper_track.dae</uri>
+            <uri>package://roverrobotics_description/meshes/flipper_track.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -98,7 +98,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/rover_payload.dae</uri>
+            <uri>package://roverrobotics_description/meshes/rover_payload.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -107,7 +107,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/rplidar_s2.dae</uri>
+            <uri>package://roverrobotics_description/meshes/rplidar_s2.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -205,7 +205,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/pro_tire.dae</uri>
+            <uri>package://roverrobotics_description/meshes/pro_tire.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -214,7 +214,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/pro_tire.dae</uri>
+            <uri>package://roverrobotics_description/meshes/pro_tire.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -254,7 +254,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/pro_tire.dae</uri>
+            <uri>package://roverrobotics_description/meshes/pro_tire.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -263,7 +263,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/pro_tire.dae</uri>
+            <uri>package://roverrobotics_description/meshes/pro_tire.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -303,7 +303,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/pro_tire.dae</uri>
+            <uri>package://roverrobotics_description/meshes/pro_tire.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -312,7 +312,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/pro_tire.dae</uri>
+            <uri>package://roverrobotics_description/meshes/pro_tire.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -352,7 +352,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/pro_tire.dae</uri>
+            <uri>package://roverrobotics_description/meshes/pro_tire.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -361,7 +361,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>file:///home/jack/rover_workspace/install/roverrobotics_description/share/roverrobotics_description/meshes/pro_tire.dae</uri>
+            <uri>package://roverrobotics_description/meshes/pro_tire.dae</uri>
           </mesh>
         </geometry>
       </visual>

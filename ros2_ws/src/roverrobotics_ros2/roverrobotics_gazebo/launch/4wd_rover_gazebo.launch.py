@@ -23,17 +23,34 @@ def generate_launch_description():
     
     declare_world_cmd = DeclareLaunchArgument(
         'world',
+        #default_value='agriculture.world', # nouti or hatake
+        #default_value='inspection_boxes_v3.world', # soko or tyozo
+        #default_value='inspection_boxes_x10_v2.world', 
+        #default_value='inspection_boxes_x10.world',
+        #default_value='inspection_boxes.world',
+        #default_value='inspection_simple_backup.world',
+        #default_value='inspection_simple_ode.world',
+        #default_value='inspection_simple_odev2.world',
         #default_value='inspection_simple.world',
         #default_value='office_cpr_construction.world',
-        default_value='island.sdf',
-        
+
+        # default_value='island.sdf',
+
         #default_value='simplecave3.sdf,'
-        #default_value='maze_simple.sdf',        
+        #default_value='maze_simple.sdf', # maze = meiro
         #default_value='maze_pillars.sdf',
         #default_value='inspection.world',
         #default_value='simple_40m2.world',
         #default_value='maze_clean.sdf',
         #default_value='maze_empty.sdf',
+
+        #default_value='maze_and_person.sdf', 
+        #default_value='maze.sdf', 
+        #default_value='office_cpr_construction.sdf', 
+        #default_value='pillars.sdf', # hasira or kui
+
+        default_value='rubicon.sdf', # off-road(complex tikei and iwaba)
+        # default_value='yosemite.world', # yosemite national park(sangaku and nature)
         description='World file to use in Gazebo')
     
     # Construct the world path using substitutions
@@ -79,6 +96,30 @@ def generate_launch_description():
         value=os.environ['PATH']
     )
     
+    # tuiki
+    # plugin_path_env = SetEnvironmentVariable(
+    #     name='IGN_GAZEBO_SYSTEM_PLUGIN_PATH',
+    #     value=[
+    #         os.environ.get('IGN_GAZEBO_SYSTEM_PLUGIN_PATH', ''), 
+    #         os.pathsep,
+    #         '/opt/ros/humble/lib'
+    #     ]
+    # )
+    # clock_resource_env = SetEnvironmentVariable(
+    #     name='GZ_SIM_RESOURCE_PATH',
+    #     value=resource_path 
+    # )
+    # ROS 2環境でシミュレーション時刻（/clock）を強制的に発行する
+    ros_time_publisher = Node(
+        # パッケージ名は ros_gz_bridge に変更
+        package='ros_gz_bridge', 
+        # 確実に存在する実行ファイル名に変更
+        executable='parameter_bridge', 
+        output='screen',
+        # パラメータのみを渡す（トピックブリッジの引数は不要）
+        parameters=[{'use_sim_time': use_sim_time}] 
+    )
+
     # Launch Gazebo
     gz_sim = ExecuteProcess(
         cmd=['ign', 'gazebo', world_path],
@@ -138,7 +179,12 @@ def generate_launch_description():
     ld.add_action(path_env)
     ld.add_action(resource_env)
     ld.add_action(model_env)
-    
+
+    # tuiki
+    # ld.add_action(plugin_path_env)
+    # ld.add_action(clock_resource_env)
+    ld.add_action(ros_time_publisher)
+
     # Add nodes and processes
     ld.add_action(gz_sim)
     ld.add_action(gz_spawn_entity)
