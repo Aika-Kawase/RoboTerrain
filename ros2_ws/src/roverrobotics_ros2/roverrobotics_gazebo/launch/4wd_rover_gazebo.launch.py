@@ -153,7 +153,8 @@ def generate_launch_description():
             '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
             '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',  # This one-way is correct
             '/odometry/wheels@nav_msgs/msg/Odometry@ignition.msgs.Odometry',
-            '/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',     # This one-way is correct
+            # '/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',     # This one-way is correct
+            '/tf_gazebo@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V', # tuiki
             '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',  # This one-way is correct
             '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
             '/imu/data@sensor_msgs/msg/Imu@gz.msgs.IMU',
@@ -164,6 +165,13 @@ def generate_launch_description():
             # Remove the spawn service bridge as it's causing issues
             #'/world/default/create@ros_gz_interfaces/srv/SpawnEntity@ignition.msgs.EntityFactory',
         ],
+
+        # tuiki
+        remappings=[
+            ('/tf_gazebo', '/tf'),
+        ],
+        parameters=[{'use_sim_time': True}],
+
         output='screen'
     )
     
@@ -190,5 +198,21 @@ def generate_launch_description():
     ld.add_action(gz_spawn_entity)
     ld.add_action(gz_ros2_bridge)
     
+    # for addition of robot_state_publisher(.sdf->/tf_static)
+    sdf_path = os.path.join(
+        get_package_share_directory('roverrobotics_description'),
+        'urdf', 'camera_rover_4wd.sdf')
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
+        output='screen',
+        parameters=[{
+            'use_sim_time': True,
+            'robot_description': Command(['cat ', sdf_path])
+        }]
+    )
+    ld.add_action(robot_state_publisher)
+
     return ld
 

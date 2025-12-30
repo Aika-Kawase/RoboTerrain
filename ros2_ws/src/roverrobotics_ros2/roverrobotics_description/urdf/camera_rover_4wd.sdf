@@ -394,9 +394,16 @@
     <plugin
       filename="libignition-gazebo-pose-publisher-system.so"
       name="ignition::gazebo::systems::PosePublisher">
-      <publish_link_pose>false</publish_link_pose>
-      <publish_sensor_pose>false</publish_sensor_pose>
-      <use_world_frame>true</use_world_frame>
+
+      <publish_link_pose>true</publish_link_pose>
+      <publish_sensor_pose>true</publish_sensor_pose>
+      <publish_collision_pose>false</publish_collision_pose>
+      <publish_visual_pose>false</publish_visual_pose>
+      <publish_nested_models>true</publish_nested_models>
+      <use_pose_vector_msg>true</use_pose_vector_msg>
+      <static_publisher>true</static_publisher>
+      <publish_world_frame>true</publish_world_frame>
+
     </plugin>
     <frame name='imu_to_payload' attached_to='payload_link'>
       <pose>0 0 0 0 -0 0</pose>
@@ -414,5 +421,21 @@
       <pose>0 0 0.125 0 -0 0</pose>
     </frame>
     <frame name='chassis_link' attached_to='base_to_chassis'/>
+
+    <link name='camera_link'>
+      <pose relative_to='base_link'>0.2 0 0.3 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0001</ixx><ixy>0</ixy><ixz>0</ixz>
+          <iyy>0.0001</iyy><iyz>0</iyz><izz>0.0001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name='camera_joint' type='fixed'>
+      <parent>base_link</parent>
+      <child>camera_link</child>
+    </joint>
+
   </model>
 </sdf>
