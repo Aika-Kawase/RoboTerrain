@@ -134,11 +134,13 @@ def generate_launch_description():
             '-file', os.path.join(
                 get_package_share_directory('roverrobotics_description'),
                 'urdf', 'camera_rover_4wd.sdf'),
-            '-name', 'rover_zero4wd',
-            '-allow_renaming', 'true',
-            '-x', '0',
-            '-y', '0',
-            '-z', '1.0',
+            # '-name', 'rover_zero4wd',
+            '-name', 'rover_4wd', # = sdf's name
+            # '-allow_renaming', 'true',
+            '-allow_renaming', 'false', # prevent to change sdf's name
+            '-x', '6', # oku
+            '-y', '0', # left
+            '-z', '2.0', # little high from floor
         ],
         output='screen'
     )
@@ -149,26 +151,43 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            # Fix bi-directional topics (use '@' instead of mixed symbols)
-            '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
-            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',  # This one-way is correct
-            '/odometry/wheels@nav_msgs/msg/Odometry@ignition.msgs.Odometry',
-            # '/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',     # This one-way is correct
-            '/tf_gazebo@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V', # tuiki
-            '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',  # This one-way is correct
-            '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
-            '/imu/data@sensor_msgs/msg/Imu@gz.msgs.IMU',
-            '/camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image',
-            '/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
-            # Fix this direction (it was reversed)
-            '/world/default/dynamic_pose/info@geometry_msgs/msg/PoseArray[ignition.msgs.Pose_V',
-            # Remove the spawn service bridge as it's causing issues
-            #'/world/default/create@ros_gz_interfaces/srv/SpawnEntity@ignition.msgs.EntityFactory',
-        ],
+            # # Fix bi-directional topics (use '@' instead of mixed symbols)
+            # '/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
+            # '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',  # This one-way is correct
+            # '/odometry/wheels@nav_msgs/msg/Odometry@ignition.msgs.Odometry',
+            # # '/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',     # This one-way is correct
+            # '/tf_gazebo@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V', # tuiki
+            # '/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',  # This one-way is correct
+            # '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+            # '/imu/data@sensor_msgs/msg/Imu@gz.msgs.IMU',
+            # '/camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image',
+            # '/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
+            # # Fix this direction (it was reversed)
+            # '/world/default/dynamic_pose/info@geometry_msgs/msg/PoseArray[ignition.msgs.Pose_V',
+            # # Remove the spawn service bridge as it's causing issues
+            # #'/world/default/create@ros_gz_interfaces/srv/SpawnEntity@ignition.msgs.EntityFactory',
 
-        # tuiki
+            # ROS 2 -> Gazebo ( ] )
+            # '/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist', # not list
+            # '/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist', # sohoko, on list
+            # '/model/rover_4wd/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist', # = spawn's name
+            '/cmd_vel@geometry_msgs/msg/Twist]ignition.msgs.Twist',
+            # Gazebo -> ROS 2 ( [ , @ )
+            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock',
+            '/odometry/wheels@nav_msgs/msg/Odometry[ignition.msgs.Odometry',
+            '/tf_gazebo@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V',
+            # gz.msgs -> ignition.msgs
+            '/joint_states@sensor_msgs/msg/JointState[ignition.msgs.Model',
+            '/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
+            '/imu/data@sensor_msgs/msg/Imu[ignition.msgs.IMU',
+            '/camera/image_raw@sensor_msgs/msg/Image[ignition.msgs.Image',
+            '/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
+            # dynamic_pose
+            '/world/challenge/dynamic_pose/info@geometry_msgs/msg/PoseArray[ignition.msgs.Pose_V',
+        ],
         remappings=[
             ('/tf_gazebo', '/tf'),
+            # ('/model/rover_4wd/cmd_vel', '/cmd_vel'), # = spawn's name
         ],
         parameters=[{'use_sim_time': True}],
 
