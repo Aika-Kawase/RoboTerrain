@@ -181,12 +181,14 @@ def generate_launch_description():
             '/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan',
             '/imu/data@sensor_msgs/msg/Imu[ignition.msgs.IMU',
             '/camera/image_raw@sensor_msgs/msg/Image[ignition.msgs.Image',
-            '/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
+            # '/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo', # different name
+            '/camera/camera_info@sensor_msgs/msg/CameraInfo[ignition.msgs.CameraInfo',
             # dynamic_pose
             '/world/challenge/dynamic_pose/info@geometry_msgs/msg/PoseArray[ignition.msgs.Pose_V',
         ],
         remappings=[
             ('/tf_gazebo', '/tf'),
+            ('/camera/camera_info', '/camera_info'),
             # ('/model/rover_4wd/cmd_vel', '/cmd_vel'), # = spawn's name
         ],
         parameters=[{'use_sim_time': True}],
